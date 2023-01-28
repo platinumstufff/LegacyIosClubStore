@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/settings.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/global.css' %}"/>
+    <title>PStore Info</title>
+</head>
+<body>
+    
+    <!-- Навбар -->
+    <ul>
+        <li><a class='rainbow'>PStore</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/apps/">Search</a></li>
+        <li><a href="/news/">News</a></li>
+        <li><a href="/settings/">Settings</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/admin/">Admin</a></li>
+    </ul>
+
+    <h1>PStore, by: <a href="https://t.me/PLNT_YT">Purpl3 (Core)</a>, <a href="https://t.me/platinumstuff">BH (Design)</a></h1>
+    <h1>Icons from: <a href="https://fonts.google.com/icons">here</a></h1>
+    {% if user.is_superuser %}
+        <h1>Hello, <a href="/admin/">admin</a></h1>
+    {% else %}
+        <h1>Hello, user</h1>
+    {% endif %}
+    
+    <h1 class="rainbow" style="font-size: 2ch;filter: contrast(30%) blur(5px);pointer-events: none;user-select: none;width: fit-content;">d3adc0re been here.</h1>
+
+</body>
+</html>

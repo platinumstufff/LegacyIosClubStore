@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/global.css' %}"/>
+    <title>PStore News</title>
+</head>
+<body>
+    <!-- Навбар -->
+    <ul>
+        <li><a class='rainbow' >PStore</a></li>
+        <li><a href="/">Home</a></li>
+        <li><a href="/apps/">Search</a></li>
+        <li><a href="/news/">News</a></li>
+        <li><a href="/settings/">Settings</a></li>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/admin/">Admin</a></li>
+    </ul>
+
+    <h1>Новости: </h1>
+    <!-- Новости -->
+    
+    {% for event in news %}
+
+        {% if event.visible is not False %}<!-- If news not hidden -->
+
+        <a href="/news/{{ event.news_id }}/" style="text-decoration: none;">
+            <div class="card" style="border: thick double;border-color: gray;width: fit-content;">
+                <h1>Дата: {{ event.date }}</h1>
+                <h1>Название: {{ event.title }}</h1>
+            {% if event.text|length > 12 %}<!-- If text long-->
+                <h1>Текст: {{ event.text|truncatechars:12 }}</h1>
+                </div>
+                </a>
+            {% endif %}
+
+            {% if event.text|length < 12%}<!-- If text short-->
+                <h1>Текст: {{ event.text }}</h1>
+                </div>
+                </a>
+            {% endif %}
+
+        {% endif %}
+
+    {% endfor %}    
+
+</body>
+</html>
