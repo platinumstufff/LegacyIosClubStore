@@ -2,7 +2,8 @@ from django.urls import reverse, URLPattern
 from Core.urls import urlpatterns
 from django.test import TestCase
 from .models import App
-#Test pages
+# Test pages
+
 
 class AppTestCase(TestCase):
     def setUp(self):
@@ -15,17 +16,20 @@ class AppTestCase(TestCase):
 
         self.assertTrue(isinstance(app, App))
         self.assertTrue(isinstance(app2, App))
-        
+
         self.assertEqual(app.__str__(), app.name)
         self.assertEqual(app2.__str__(), app2.name)
+
 
 class UrlsTest(TestCase):
     def test_responses(self):
         for url in urlpatterns:
-            
-            if not isinstance(url, URLPattern) or url.pattern.regex.groups or not url.name:
+
+            if not isinstance(
+                    url,
+                    URLPattern) or url.pattern.regex.groups or not url.name:
                 continue
-            
+
             urlpath = reverse(url.name)
             response = self.client.get(urlpath, follow=True)
             self.assertEqual(response.status_code, 200)
